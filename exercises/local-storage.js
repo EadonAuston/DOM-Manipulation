@@ -47,10 +47,14 @@ window.onload = () => {
 };
 
 document.addEventListener("click", (e) => {
-  e.target.style.backgroundColor === "red"
+  if(e.target.classList.contains("card")){
+    e.target.style.backgroundColor === "red"
     ? (e.target.style.backgroundColor = "white")
     : (e.target.style.backgroundColor = "red");
   localStorage.getItem(e.target.id) === "true"
     ? localStorage.setItem(e.target.id, "false")
     : localStorage.setItem(e.target.id, "true");
+  }
+  console.log(e)
+ 
 });
