@@ -12,8 +12,8 @@
  */
 
 // Your code goes here...
-
-
+// const parentContainer = document.getElementById('main');
+// const allItems = document.querySelectorAll('.item');
 
 /**
  * @task
@@ -23,7 +23,7 @@
  */
 
 // Your code goes here...
-
+// const sortBtn = document.querySelectorAll('.sortBtn');
 
 
 /**
@@ -39,7 +39,22 @@
 
 // Your code goes here...
 
+   // const sortCB = (a, b) => {
+   //    if (a.innerHtml < b.innerHtml) return 1;
+   //    else if (a.innerHtml > b.innerHtml) return -1;
+   //    else return 0;
+   //  }
 
+
+
+// Sort the array
+// let newContainer = Array.from(parentContainer)
+// newContainer.sort(sortCB);
+
+// Append every child of the sorted array back to the parent Node of the nodeList.
+// newContainer.forEach((item) => {
+//    parentContainer.append(item);
+// });
 
 /**
  * @task
@@ -50,5 +65,37 @@
  */
 
 // Your code goes here...
+// for (let i = 0; i < Array.from(sortBtn).length; i++) {
+//    sortBtn.children[i].addEventListener('click', () => {
+//       sortCB();
+//    })
+// }
 
 
+
+const parentContainer = document.getElementById('main');
+const allItems = document.querySelectorAll('.item');
+const sortBtn = document.querySelectorAll('.sortBtn');
+
+const sortData = (direction) => {
+  const sortCB = (a, b) => {
+    if (direction === 'asc') {
+      return a.innerHTML.localeCompare(b.innerHTML);
+    } else {
+      return b.innerHTML.localeCompare(a.innerHTML);
+    }
+  };
+
+  const newContainer = Array.from(parentContainer.children);
+  newContainer.sort(sortCB);
+
+  newContainer.forEach((item) => {
+    parentContainer.append(item);
+  });
+};
+
+for (let i = 0; i < sortBtn.length; i++) {
+  sortBtn[i].addEventListener('click', () => {
+    sortData(sortBtn[i].dataset.sortdir);
+  });
+}

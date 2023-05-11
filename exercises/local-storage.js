@@ -38,3 +38,19 @@
  */
 
 // Your code goes here...
+window.onload = () => {
+  for (let i = 0; i < 6; i++) {
+    if (localStorage.getItem(i) === "true") {
+      document.getElementById(`${i}`).style.backgroundColor = "red";
+    }
+  }
+};
+
+document.addEventListener("click", (e) => {
+  e.target.style.backgroundColor === "red"
+    ? (e.target.style.backgroundColor = "white")
+    : (e.target.style.backgroundColor = "red");
+  localStorage.getItem(e.target.id) === "true"
+    ? localStorage.setItem(e.target.id, "false")
+    : localStorage.setItem(e.target.id, "true");
+});
